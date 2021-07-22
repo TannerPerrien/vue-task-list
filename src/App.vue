@@ -2,13 +2,16 @@
   <div>
     <TodoList
       name="Monday"
-      :tasks="tasksMonday" />
+      :tasks="tasksForDay(1)"
+      :onCheckChanged="onCheckChanged" />
     <TodoList
       name="Tuesday"
-      :tasks="tasksTuesday" />
+      :tasks="tasksForDay(2)"
+      :onCheckChanged="onCheckChanged" />
     <TodoList
       name="Wednesday"
-      :tasks="tasksWednesday" />
+      :tasks="tasksForDay(3)"
+      :onCheckChanged="onCheckChanged" />
   </div>
 </template>
 
@@ -22,25 +25,43 @@ export default {
   },
   data: function() {
     return  {
-      tasksMonday: [{
+      tasks: [{
+        id: 1,
+        day: 1,
         label: "Take out trash",
         done: false,
-      }],
-      tasksTuesday: [{
+      }, {
+        id: 2,
+        day: 2,
         label: "Chore #1",
         done: false,
       }, {
+        id: 3,
+        day: 2,
         label: "Chore #2",
         done: true,
       }, {
+        id: 4,
+        day: 2,
         label: "Chore #3",
         done: false,
-      }],
-      tasksWednesday: [{
+      }, {
+        id: 5,
+        day: 3,
         label: "Wednesday Task #1",
         done: false,
-      }],
+      }]
     }
+  },
+
+  methods: {
+    tasksForDay(dayId) {
+      return this.tasks.filter(task => task.day === dayId);
+    },
+    onCheckChanged(task) {
+      const internalTask = this.tasks.find(t => t.id === task.id);
+      internalTask.done = !internalTask.done;
+    },
   },
 }
 </script>

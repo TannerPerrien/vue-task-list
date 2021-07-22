@@ -4,8 +4,9 @@
       <button @click="markAllDone">Mark all done</button>
       <button @click="markAllUndone">Mark all undone</button>
       <ol>
-        <todo-item v-for="task in tasks"
+        <TodoItem v-for="task in tasks"
           :task="task"
+          :onCheckChanged="onCheckChanged"
         />
       </ol>
     </div>
@@ -20,7 +21,7 @@ export default {
     TodoItem,
   },
 
-  props: ['name', 'tasks'],
+  props: ['name', 'tasks', 'onCheckChanged'],
   
   methods: {
     markAllDone() {
