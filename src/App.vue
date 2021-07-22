@@ -1,18 +1,47 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="https://vuejs.org/images/logo.png">
-    <HelloWorld msg="WWelcome to Your Vue.js App"/>
+  <div>
+    <TodoList
+      name="Monday"
+      :tasks="tasksMonday" />
+    <TodoList
+      name="Tuesday"
+      :tasks="tasksTuesday" />
+    <TodoList
+      name="Wednesday"
+      :tasks="tasksWednesday" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    TodoList
+  },
+  data: function() {
+    return  {
+      tasksMonday: [{
+        label: "Take out trash",
+        done: false,
+      }],
+      tasksTuesday: [{
+        label: "Chore #1",
+        done: false,
+      }, {
+        label: "Chore #2",
+        done: true,
+      }, {
+        label: "Chore #3",
+        done: false,
+      }],
+      tasksWednesday: [{
+        label: "Wednesday Task #1",
+        done: false,
+      }],
+    }
+  },
 }
 </script>
 
